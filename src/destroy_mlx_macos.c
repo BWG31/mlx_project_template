@@ -6,7 +6,7 @@
 /*   By: bgolding <bgolding@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 10:12:56 by bgolding          #+#    #+#             */
-/*   Updated: 2024/08/06 17:29:00 by bgolding         ###   ########.fr       */
+/*   Updated: 2024/08/07 10:09:20 by bgolding         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,7 @@ void	destroy_mlx(t_mlx *mlx)
 			mlx_destroy_window(mlx->xvar, mlx->win);
 			mlx->win = NULL;
 		}
-		if (mlx->xvar)
-		{
-			free(mlx->xvar);
-			mlx->xvar = NULL;
-		}
+		mlx->xvar = NULL;
 		free(mlx);
 	}
 }
