@@ -6,7 +6,7 @@
 /*   By: bgolding <bgolding@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 11:23:05 by bgolding          #+#    #+#             */
-/*   Updated: 2024/08/06 18:01:00 by bgolding         ###   ########.fr       */
+/*   Updated: 2024/08/07 11:11:49 by bgolding         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include "libft.h"
 # include "mlx.h"
 # include "hex_colors.h"
+# include "librt.h"
 # include <errno.h>
 # include <stdio.h>
 

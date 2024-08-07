@@ -6,7 +6,7 @@
 #    By: bgolding <bgolding@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/12 11:21:21 by bgolding          #+#    #+#              #
-#    Updated: 2024/08/07 09:51:04 by bgolding         ###   ########.fr        #
+#    Updated: 2024/08/07 11:11:27 by bgolding         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,7 @@ OBJ_DIR			=	obj/
 INC_DIR			=	inc/
 LIBFT_DIR 		=	$(LIB)libft/
 MINILIBX_DIR	=	$(LIB)mlx/
+LIBRT_DIR		=	$(LIB)librt/
 
 TEMPLATE_FILES	=	main error init_data init_mlx destroy_data \
 					hooks keypress mouse draw_utils render
@@ -44,9 +45,13 @@ endif
 
 
 STATIC_LIBS		=	$(LIBFT_DIR)libft.a \
-					$(MINILIBX_DIR)libmlx.a
+					$(MINILIBX_DIR)libmlx.a \
+					$(LIBRT_DIR)librt.a
 
-INC_PATHS		=	$(addprefix -I, $(INC_DIR) $(LIBFT_DIR)inc $(MINILIBX_DIR))
+INC_PATHS		=	$(addprefix -I, $(INC_DIR) \
+									$(LIBFT_DIR)inc \
+									$(MINILIBX_DIR) \
+									$(LIBRT_DIR)inc)
 
 SRCS			=	$(addprefix $(SRC_DIR), $(addsuffix .c, $(SRC_FILES)))
 OBJS			=	$(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_FILES)))
@@ -66,11 +71,12 @@ $(STATIC_LIBS):
 				@echo "$(YELLOW)Creating archives...$(DEF_COLOR)"
 				@make -C $(LIBFT_DIR)
 				@make -C $(MINILIBX_DIR)
+				@make -C $(LIBRT_DIR)
 				@echo "$(GREEN)Minilibx ready! $(DEF_COLOR)"
 
 $(NAME):		$(OBJ_DIR) $(OBJS) $(STATIC_LIBS)
 				@echo "OS detected: $(UNAME_S)"
-				@$(CC) $(CFLAGS) $(OBJS) -L$(LIBFT_DIR) -lft -L$(MINILIBX_DIR) -lmlx $(OS_FLAGS) -o $@
+				@$(CC) $(CFLAGS) $(OBJS) -L$(LIBFT_DIR) -lft -L$(MINILIBX_DIR) -lmlx -L$(LIBRT_DIR) -lrt $(OS_FLAGS) -o $@
 				@echo "$(GREEN)Successfully created program: $(NAME) $(DEF_COLOR)"
 
 $(OBJ_DIR)%.o:	$(SRC_DIR)%.c | $(OBJ_DIR)
@@ -82,12 +88,14 @@ $(OBJ_DIR):
 clean:			
 				@$(RM) -rf $(OBJ_DIR)
 				@make clean -C $(LIBFT_DIR)
+				@make clean -C $(LIBRT_DIR)
 				@echo "$(GREEN)clean complete $(DEF_COLOR)"
 
 fclean:			clean
 				@$(RM) $(NAME)
 				@make clean -C $(MINILIBX_DIR)
 				@make fclean -C $(LIBFT_DIR)
+				@make fclean -C $(LIBRT_DIR)
 				@echo "$(GREEN)fclean complete $(DEF_COLOR)"
 
 re:				fclean all
