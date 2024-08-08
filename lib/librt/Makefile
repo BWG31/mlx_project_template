@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: bgolding <bgolding@student.42.fr>          +#+  +:+       +#+         #
+#    By: ben <ben@student.42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/06 12:49:52 by bgolding          #+#    #+#              #
-#    Updated: 2024/08/06 16:19:14 by bgolding         ###   ########.fr        #
+#    Updated: 2024/08/08 17:17:06 by ben              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,8 +22,8 @@ TPL_SRC =	tp_error vector point equal add subtract negate multiply divide \
 CLR_SRC =	rgb_add rgb_subtract rgb_multiply rgb_blend rgb_conversion
 
 MX_SRC	=	mx_error init equal multiply identity transpose submatrices \
-			determinant adjugate inversion translation reflection rotation \
-			shearing unit_conversions
+			determinant adjugate inversion translation scaling reflection \
+			rotation shearing unit_conversions
 			
 SRCS	=	$(addprefix $(SRC_DIR)tuples/, $(addsuffix .c, $(TPL_SRC))) \
 			$(addprefix $(SRC_DIR)colors/, $(addsuffix .c, $(CLR_SRC))) \
