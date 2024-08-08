@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   scaling.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bgolding <bgolding@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ben <ben@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 13:01:04 by bgolding          #+#    #+#             */
-/*   Updated: 2024/08/07 10:49:37 by bgolding         ###   ########.fr       */
+/*   Updated: 2024/08/08 17:26:31 by ben              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,5 @@ t_m4x4	mx_scaling(float x, float y, float z)
 
 t_m4x4	mx_add_scaling(t_m4x4 m, float x, float y, float z)
 {
-	retrun (mx_mult(mx_scaling(x, y, z), m));
+	return (mx_mult(mx_scaling(x, y, z), m));
 }
