@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   reflection.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bgolding <bgolding@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ben <ben@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 13:19:27 by bgolding          #+#    #+#             */
-/*   Updated: 2024/08/07 10:50:11 by bgolding         ###   ########.fr       */
+/*   Updated: 2024/08/08 17:30:51 by ben              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,18 @@
 
 t_m4x4	mx_reflection(int axis)
 {
-	t_m4x4	m;
-
 	if (axis < 0 || axis > Z_AXIS)
 	{
 		mx_error("mx_reflection", MX_AXIS_ERROR);
-		m = mx_identity();
+		return (mx_identity());
 	}
-	else if (axis == X_AXIS)
-		m = mx_scaling(-1, 1, 1);
-	else if (axis == Y_AXIS)
-		m = mx_scaling(1, -1, 1);
-	else if (axis == Z_AXIS)
-		m = mx_scaling(1, 1, -1);
-	return (m);
+	if (axis == X_AXIS)
+		return (mx_scaling(-1, 1, 1));
+	if (axis == Y_AXIS)
+		return (mx_scaling(1, -1, 1));
+	if (axis == Z_AXIS)
+		return (mx_scaling(1, 1, -1));
+	return (mx_identity());
 }
 
 t_m4x4	mx_add_reflection(t_m4x4 m, int axis)
