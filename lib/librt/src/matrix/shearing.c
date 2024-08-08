@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shearing.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bgolding <bgolding@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ben <ben@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 15:20:19 by bgolding          #+#    #+#             */
-/*   Updated: 2024/08/07 10:51:50 by bgolding         ###   ########.fr       */
+/*   Updated: 2024/08/08 17:34:32 by ben              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,20 +41,18 @@ static t_m4x4	shearing_z(float x, float y)
 
 t_m4x4	mx_shearing(int axis, float a, float b)
 {
-	t_m4x4	m;
-
 	if (axis < X_AXIS || axis > Z_AXIS)
 	{
 		mx_error("mx_rotation", MX_AXIS_ERROR);
-		m = mx_identity();
+		return (mx_identity());
 	}
 	else if (axis == X_AXIS)
-		m = shearing_x(a, b);
+		return (shearing_x(a, b));
 	else if (axis == Y_AXIS)
-		m = shearing_y(a, b);
+		return (shearing_y(a, b));
 	else if (axis == Z_AXIS)
-		m = shearing_z(a, b);
-	return (m);
+		return (shearing_z(a, b));
+	return (mx_identity());
 }
 
 t_m4x4	mx_add_shearing(t_m4x4 m, int axis, float a, float b)
