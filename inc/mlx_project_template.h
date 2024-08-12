@@ -6,7 +6,7 @@
 /*   By: bgolding <bgolding@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 11:23:05 by bgolding          #+#    #+#             */
-/*   Updated: 2024/08/07 11:11:49 by bgolding         ###   ########.fr       */
+/*   Updated: 2024/08/12 14:41:29 by bgolding         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,6 @@
 #  define WIN_HEIGHT (1600)
 #  define WIN_MID_X (1200)
 #  define WIN_MID_Y (800)
-# else
-#  error "Unsupported OS"
 # endif
 
 // TYPEDEFS
