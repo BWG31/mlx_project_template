@@ -6,7 +6,7 @@
 /*   By: bgolding <bgolding@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 11:33:44 by bgolding          #+#    #+#             */
-/*   Updated: 2024/08/06 17:25:11 by bgolding         ###   ########.fr       */
+/*   Updated: 2024/08/12 15:01:52 by bgolding         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,10 @@ void	reset_image(t_data *data)
 
 	new_img = mlx_new_image(data->mlx->xvar, WIN_WIDTH, WIN_HEIGHT);
 	if (!new_img)
-		exit_error(data, "mlx_new_image failed");
+	{
+		perror("unable to reset image for render");
+		return ;
+	}
 	mlx_destroy_image(data->mlx->xvar, data->mlx->img);
 	data->mlx->img = new_img;
 	data->mlx->img_data = mlx_get_data_addr(data->mlx->img, \
