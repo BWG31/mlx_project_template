@@ -6,7 +6,7 @@
 /*   By: bgolding <bgolding@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 16:40:59 by bgolding          #+#    #+#             */
-/*   Updated: 2024/08/06 15:17:58 by bgolding         ###   ########.fr       */
+/*   Updated: 2024/08/09 16:59:29 by bgolding         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,8 @@ static float	itos(int i)
 	return (i / 255.0f);
 }
 
-/*	Converts an integer representation of a color into a t_color struct.
+/*	Converts an integer representation of a color (0xRRGGBB) into a
+	t_color struct as defined in colors.h.
 	Warning: Loss of precision will often occur due to nature of floating 
 	point numbers.*/
 t_color	rgb_itos(int i)

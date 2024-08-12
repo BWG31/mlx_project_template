@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   reflection.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ben <ben@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: bgolding <bgolding@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 13:19:27 by bgolding          #+#    #+#             */
-/*   Updated: 2024/08/08 17:30:51 by ben              ###   ########.fr       */
+/*   Updated: 2024/08/12 13:17:41 by bgolding         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,13 @@
 
 t_m4x4	mx_reflection(int axis)
 {
-	if (axis < 0 || axis > Z_AXIS)
-	{
-		mx_error("mx_reflection", MX_AXIS_ERROR);
-		return (mx_identity());
-	}
 	if (axis == X_AXIS)
 		return (mx_scaling(-1, 1, 1));
 	if (axis == Y_AXIS)
 		return (mx_scaling(1, -1, 1));
 	if (axis == Z_AXIS)
 		return (mx_scaling(1, 1, -1));
+	mx_error("mx_reflection", MX_AXIS_ERROR);
 	return (mx_identity());
 }
 

@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgolding <bgolding@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/05 09:58:07 by bgolding          #+#    #+#             */
-/*   Updated: 2024/08/07 10:48:04 by bgolding         ###   ########.fr       */
+/*   Created: 2024/08/12 11:42:14 by bgolding          #+#    #+#             */
+/*   Updated: 2024/08/12 14:10:17 by bgolding         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,27 @@
 
 t_m4x4	mx_inversion(t_m4x4 m)
 {
-	float	det;
+	t_m4x4		inverted;
+	int			row;
+	int			col;
+	float		det;
 
-	det = determinant_4x4(m);
-	if (equal(det, 0))
+	det = mx_determinant(m);
+	if (equalf(det, 0))
 	{
 		mx_error("mx_inversion", MX_INV_ERROR);
 		return (m);
 	}
-	return (mx_mult_float(mx_adjugate(m), 1 / det));
-}
-
-t_m4x4	mx_add_inversion(t_m4x4 m)
-{
-	return (mx_mult(mx_inversion(m), m));
+	row = 0;
+	while (row < MAT4X4_SIZE)
+	{
+		col = 0;
+		while (col < MAT4X4_SIZE)
+		{
+			inverted.data[col][row] = mx_cofactor(m, row, col) / det;
+			col++;
+		}
+		row++;
+	}
+	return (inverted);
 }

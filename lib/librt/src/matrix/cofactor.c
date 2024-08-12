@@ -1,33 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   adjugate.c                                         :+:      :+:    :+:   */
+/*   cofactor.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgolding <bgolding@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/05 11:25:50 by bgolding          #+#    #+#             */
-/*   Updated: 2024/08/06 16:01:18 by bgolding         ###   ########.fr       */
+/*   Created: 2024/08/12 11:31:44 by bgolding          #+#    #+#             */
+/*   Updated: 2024/08/12 11:40:44 by bgolding         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "matrix.h"
 
-t_m4x4	mx_adjugate(t_m4x4 m)
+float	mx_cofactor_3x3(t_m3x3 a, int sub_row, int sub_col)
 {
-	t_m4x4	cofactor_matrix;
-	int		i;
-	int		j;
+	float		minor;
 
-	i = 0;
-	while (i < MAT4X4_SIZE)
-	{
-		j = 0;
-		while (j < MAT4X4_SIZE)
-		{
-			cofactor_matrix.data[i][j] = cofactor_4x4(m, i, j);
-			j++;
-		}
-		i++;
-	}
-	return (mx_transpose(cofactor_matrix));
+	minor = mx_determinant_2x2(mx_submatrix_3x3(a, sub_row, sub_col));
+	if ((sub_row + sub_col) & 1)
+		return (minor * -1);
+	return (minor);
+}
+
+float	mx_cofactor(t_m4x4 a, int sub_row, int sub_col)
+{
+	float	minor;
+
+	minor = mx_determinant_3x3(mx_submatrix(a, sub_row, sub_col));
+	if ((sub_row + sub_col) & 1)
+		return (minor * -1);
+	return (minor);
 }

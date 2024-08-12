@@ -6,13 +6,13 @@
 /*   By: bgolding <bgolding@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 14:29:52 by bgolding          #+#    #+#             */
-/*   Updated: 2024/08/06 14:37:11 by bgolding         ###   ########.fr       */
+/*   Updated: 2024/08/09 10:33:57 by bgolding         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "tuples.h"
 
-t_tuple	negate_tuple(t_tuple t)
+t_tuple	tp_negate(t_tuple t)
 {
 	return ((t_tuple){-t.x, -t.y, -t.z, t.w});
 }

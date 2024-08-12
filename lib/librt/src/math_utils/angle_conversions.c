@@ -1,20 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   subtract.c                                         :+:      :+:    :+:   */
+/*   angle_conversions.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgolding <bgolding@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/22 13:49:41 by bgolding          #+#    #+#             */
-/*   Updated: 2024/08/09 10:31:30 by bgolding         ###   ########.fr       */
+/*   Created: 2024/08/12 14:02:40 by bgolding          #+#    #+#             */
+/*   Updated: 2024/08/12 14:02:54 by bgolding         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "tuples.h"
+#include "math_utils.h"
 
-t_tuple	tp_subtract(t_tuple a, t_tuple b)
+float	deg_to_rad(float degrees)
 {
-	if (a.w - b.w < 0)
-		tp_error("tp_subtract", TP_SUB_ERROR);
-	return ((t_tuple){a.x - b.x, a.y - b.y, a.z - b.z, a.w - b.w});
+	return (degrees / 180 * M_PI);
+}
+
+float	rad_to_deg(float radians)
+{
+	return (radians * 180 / M_PI);
 }

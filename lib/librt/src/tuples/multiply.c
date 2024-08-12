@@ -6,13 +6,13 @@
 /*   By: bgolding <bgolding@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 15:03:19 by bgolding          #+#    #+#             */
-/*   Updated: 2024/08/06 14:37:04 by bgolding         ###   ########.fr       */
+/*   Updated: 2024/08/09 10:40:36 by bgolding         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "tuples.h"
 
-t_tuple	multiply_tuple(t_tuple a, float f)
+t_tuple	tp_multiply(t_tuple a, float f)
 {
 	return ((t_tuple){a.x * f, a.y * f, a.z * f, a.w});
 }

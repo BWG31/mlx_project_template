@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   rotation.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ben <ben@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: bgolding <bgolding@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 13:58:00 by bgolding          #+#    #+#             */
-/*   Updated: 2024/08/08 17:32:40 by ben              ###   ########.fr       */
+/*   Updated: 2024/08/12 13:26:15 by bgolding         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "matrix.h"
 
-static t_m4x4	x_rotate_matrix(float r)
+static t_m4x4	mx_rotation_x(float r)
 {
 	return ((t_m4x4){{\
 		{1, 0, 0, 0}, \
@@ -21,7 +21,7 @@ static t_m4x4	x_rotate_matrix(float r)
 		{0, 0, 0, 1}}});
 }
 
-static t_m4x4	y_rotate_matrix(float r)
+static t_m4x4	mx_rotation_y(float r)
 {
 	return ((t_m4x4){{\
 		{cos(r), 0, sin(r), 0}, \
@@ -30,7 +30,7 @@ static t_m4x4	y_rotate_matrix(float r)
 		{0, 0, 0, 1}}});
 }
 
-static t_m4x4	z_rotate_matrix(float r)
+static t_m4x4	mx_rotation_z(float r)
 {
 	return ((t_m4x4){{\
 		{cos(r), -sin(r), 0, 0}, \
@@ -41,17 +41,13 @@ static t_m4x4	z_rotate_matrix(float r)
 
 t_m4x4	mx_rotation(float radians, int axis)
 {
-	if (axis < X_AXIS || axis > Z_AXIS)
-	{
-		mx_error("mx_rotation", MX_AXIS_ERROR);
-		return (mx_identity());
-	}
-	else if (axis == X_AXIS)
-		return (x_rotate_matrix(radians));
-	else if (axis == Y_AXIS)
-		return (y_rotate_matrix(radians));
-	else if (axis == Z_AXIS)
-		return (z_rotate_matrix(radians));
+	if (axis == X_AXIS)
+		return (mx_rotation_x(radians));
+	if (axis == Y_AXIS)
+		return (mx_rotation_y(radians));
+	if (axis == Z_AXIS)
+		return (mx_rotation_z(radians));
+	mx_error("mx_rotation", MX_AXIS_ERROR);
 	return (mx_identity());
 }
 

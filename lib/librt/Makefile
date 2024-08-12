@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ben <ben@student.42.fr>                    +#+  +:+       +#+         #
+#    By: bgolding <bgolding@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/06 12:49:52 by bgolding          #+#    #+#              #
-#    Updated: 2024/08/08 17:17:06 by ben              ###   ########.fr        #
+#    Updated: 2024/08/12 14:09:20 by bgolding         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,18 +16,23 @@ SRC_DIR	=	src/
 OBJ_DIR	=	obj/
 INC_DIR	=	inc/
 
-TPL_SRC =	tp_error vector point equal add subtract negate multiply divide \
-			fsquaref magnitude normalize dot_product cross_product
+TPL_SRC =	error vector point equal add subtract negate multiply divide \
+			magnitude normalize dot_product cross_product
 
-CLR_SRC =	rgb_add rgb_subtract rgb_multiply rgb_blend rgb_conversion
+CLR_SRC =	rgb_conversion rgb_add rgb_subtract rgb_scale rgb_multiply \
+			rgb_blend
 
-MX_SRC	=	mx_error init equal multiply identity transpose submatrices \
-			determinant adjugate inversion translation scaling reflection \
-			rotation shearing unit_conversions
+MX_SRC	=	error init equal multiply identity transpose submatrix \
+			determinant cofactor inversion translation scaling reflection \
+			rotation shearing
+
+MTH_SRC	=	equalf fsquaref angle_conversions
 			
 SRCS	=	$(addprefix $(SRC_DIR)tuples/, $(addsuffix .c, $(TPL_SRC))) \
 			$(addprefix $(SRC_DIR)colors/, $(addsuffix .c, $(CLR_SRC))) \
-			$(addprefix $(SRC_DIR)matrix/, $(addsuffix .c, $(MX_SRC)))
+			$(addprefix $(SRC_DIR)matrix/, $(addsuffix .c, $(MX_SRC))) \
+			$(addprefix $(SRC_DIR)math_utils/, $(addsuffix .c, $(MTH_SRC)))
+
 OBJS	=	$(patsubst $(SRC_DIR)%.c, $(OBJ_DIR)%.o, $(SRCS))
 
 CC		=	gcc
@@ -35,7 +40,8 @@ CFLAGS	=	-Wall -Wextra -Werror
 RM		=	rm -f
 AR		=	ar -rc
 
-DEF_COLOR		=	\033[0;39m
+DEFAULT			=	\033[0m
+RED				=	\033[0;91m
 GREEN			=	\033[0;92m
 YELLOW			=	\033[0;93m
 
@@ -43,17 +49,20 @@ all:		$(NAME)
 
 $(NAME):	$(OBJS)
 			@$(AR) $@ $(OBJS)
-			@echo "$(GREEN)librt ready! $(DEF_COLOR)"
+			@echo "$(GREEN)\t$(NAME) compiled$(DEFAULT)"
 
 $(OBJ_DIR)%.o:	$(SRC_DIR)%.c
 				@mkdir -p $(dir $@)
-					@$(CC) $(CFLAGS) -I$(INC_DIR) -c $< -o $@
+				@printf "$(YELLOW).$(DEFAULT)"
+				@$(CC) $(CFLAGS) -I$(INC_DIR) -c $< -o $@
 
 clean:
 			@$(RM) -rf $(OBJ_DIR)
+			@echo "$(RED)##### Removed librt object files #####$(DEFAULT)"
 
 fclean:		clean
 			@$(RM) $(NAME)
+			@echo "$(RED)##### Removed librt archive file #####$(DEFAULT)"
 
 re:			fclean all
 

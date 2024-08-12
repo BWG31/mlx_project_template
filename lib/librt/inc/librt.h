@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgolding <bgolding@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/06 12:51:25 by bgolding          #+#    #+#             */
-/*   Updated: 2024/08/06 16:17:39 by bgolding         ###   ########.fr       */
+/*   Created: 2024/08/12 14:22:46 by bgolding          #+#    #+#             */
+/*   Updated: 2024/08/12 14:23:22 by bgolding         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 # define LIBRT_H
 
 # include "tuples.h"
-# include "colors.h"
 # include "matrix.h"
+# include "colors.h"
+# include "math_utils.h"
 
 #endif

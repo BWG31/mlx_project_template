@@ -6,7 +6,7 @@
 /*   By: bgolding <bgolding@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 12:53:08 by bgolding          #+#    #+#             */
-/*   Updated: 2024/08/06 15:34:17 by bgolding         ###   ########.fr       */
+/*   Updated: 2024/08/12 14:00:52 by bgolding         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,13 @@
 
 //	INCLUDES
 # include <stdio.h>
-# include <stdbool.h>
 # include <unistd.h>
 # include <stdlib.h>
-# include <math.h>
+# include "math_utils.h"
 
 //	DEFINES
 # define VECTOR 	(0.0)
 # define POINT		(1.0)
-# define EPSILON	(0.00001)
 
 //	ERROR/WARNING MESSAGES
 # define TP_ADD_ERROR	"resulting .w value is > 1"
@@ -53,17 +51,15 @@ t_tuple		vector(float x, float y, float z);
 t_tuple		*alloc_vector(float x, float y, float z);
 t_tuple		point(float x, float y, float z);
 t_tuple		*alloc_point(float x, float y, float z);
-bool		equal(float a, float b);
-bool		equal_tuples(t_tuple a, t_tuple b);
-t_tuple		add_tuple(t_tuple a, t_tuple b);
-t_tuple		sub_tuple(t_tuple a, t_tuple b);
-t_tuple		negate_tuple(t_tuple t);
-t_tuple		multiply_tuple(t_tuple a, float f);
-t_tuple		divide_tuple(t_tuple t, float d);
-float		fsquaref(float f);
-float		vector_magnitude(t_vector vec);
-t_vector	normalize_vector(t_vector t);
-float		vector_dot_product(t_vector a, t_vector b);
-t_vector	vector_cross_product(t_vector a, t_vector b);
+bool		tp_equal(t_tuple a, t_tuple b);
+t_tuple		tp_add(t_tuple a, t_tuple b);
+t_tuple		tp_subtract(t_tuple a, t_tuple b);
+t_tuple		tp_negate(t_tuple t);
+t_tuple		tp_multiply(t_tuple a, float f);
+t_tuple		tp_divide(t_tuple t, float d);
+float		tp_magnitude(t_vector vec);
+t_vector	tp_normalize(t_vector t);
+float		tp_dot_product(t_vector a, t_vector b);
+t_vector	tp_cross_product(t_vector a, t_vector b);
 
 #endif

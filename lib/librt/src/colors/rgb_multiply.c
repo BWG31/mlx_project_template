@@ -6,15 +6,15 @@
 /*   By: bgolding <bgolding@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 13:51:38 by bgolding          #+#    #+#             */
-/*   Updated: 2024/08/06 15:17:50 by bgolding         ###   ########.fr       */
+/*   Updated: 2024/08/09 15:54:33 by bgolding         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "colors.h"
 
-/*	Returns the resulting t_color from multiplying 
-	all elements of t_color c by the scalar s. */
-t_color	rgb_mult(t_color c, float s)
+/*	Returns the Schur product (Hadamard product) of colors a and b,
+	effectively multiplying each element by its corresponding one.*/
+t_color	rgb_mult(t_color a, t_color b)
 {
-	return ((t_color){c.red * s, c.green * s, c.blue * s});
+	return ((t_color){a.red * b.red, a.green * b.green, a.blue * b.blue});
 }

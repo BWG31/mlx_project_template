@@ -6,17 +6,26 @@
 /*   By: bgolding <bgolding@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 16:06:37 by bgolding          #+#    #+#             */
-/*   Updated: 2024/08/06 15:40:17 by bgolding         ###   ########.fr       */
+/*   Updated: 2024/08/09 12:41:51 by bgolding         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "matrix.h"
 
-void	bzero_matrix(t_m4x4 *m)
+t_m4x4	mx_zero(void)
+{
+	return ((t_m4x4){{\
+		{0, 0, 0, 0}, \
+		{0, 0, 0, 0}, \
+		{0, 0, 0, 0}, \
+		{0, 0, 0, 0}}});
+}
+
+void	mx_bzero(t_m4x4 *m)
 {
 	if (!m)
 	{
-		mx_error("bzero_matrix", MX_NULL_PTR_ERROR);
+		mx_error("mx_bzero", MX_NULL_PTR_ERROR);
 		return ;
 	}
 	*m = (t_m4x4){{\
@@ -24,13 +33,4 @@ void	bzero_matrix(t_m4x4 *m)
 		{0, 0, 0, 0}, \
 		{0, 0, 0, 0}, \
 		{0, 0, 0, 0}}};
-}
-
-t_m4x4	zero_matrix(void)
-{
-	return ((t_m4x4){{\
-		{0, 0, 0, 0}, \
-		{0, 0, 0, 0}, \
-		{0, 0, 0, 0}, \
-		{0, 0, 0, 0}}});
 }

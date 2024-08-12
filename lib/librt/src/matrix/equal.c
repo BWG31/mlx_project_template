@@ -5,33 +5,69 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgolding <bgolding@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/29 16:46:28 by bgolding          #+#    #+#             */
-/*   Updated: 2024/08/06 15:43:45 by bgolding         ###   ########.fr       */
+/*   Created: 2024/07/29 16:55:43 by bebrandt          #+#    #+#             */
+/*   Updated: 2024/08/09 14:25:00 by bgolding         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "matrix.h"
 
-/*
-	Compares two t_m4x4 structures for equality.
-	Returns false at the first non-equal data element.
-	Run-time optimization through pointer arithmetic &
-	comparing 4 elements per iteration.
-*/
 bool	mx_equal(t_m4x4 a, t_m4x4 b)
 {
-	const int	total_values = MAT4X4_SIZE * MAT4X4_SIZE;
-	const float	*ptr_a = (const float *)a.data;
-	const float	*ptr_b = (const float *)b.data;
-	int			i;
+	int	row;
+	int	col;
 
-	i = 0;
-	while (i < total_values)
+	row = 0;
+	while (row < MAT4X4_SIZE)
 	{
-		if (ptr_a[i] != ptr_b[i] || ptr_a[i + 1] != ptr_b[i + 1] || \
-			ptr_a[i + 2] != ptr_b[i + 2] || ptr_a[i + 3] != ptr_b[i + 3])
-			return (false);
-		i += MAT4X4_SIZE;
+		col = 0;
+		while (col < MAT4X4_SIZE)
+		{
+			if (!equalf(a.data[row][col], b.data[row][col]))
+				return (false);
+			col++;
+		}
+		row++;
+	}
+	return (true);
+}
+
+bool	mx_equal_3x3(t_m3x3 a, t_m3x3 b)
+{
+	int	row;
+	int	col;
+
+	row = 0;
+	while (row < MAT3X3_SIZE)
+	{
+		col = 0;
+		while (col < MAT3X3_SIZE)
+		{
+			if (!equalf(a.data[row][col], b.data[row][col]))
+				return (false);
+			col++;
+		}
+		row++;
+	}
+	return (true);
+}
+
+bool	mx_equal_2x2(t_m2x2 a, t_m2x2 b)
+{
+	int	row;
+	int	col;
+
+	row = 0;
+	while (row < MAT2X2_SIZE)
+	{
+		col = 0;
+		while (col < MAT2X2_SIZE)
+		{
+			if (!equalf(a.data[row][col], b.data[row][col]))
+				return (false);
+			col++;
+		}
+		row++;
 	}
 	return (true);
 }

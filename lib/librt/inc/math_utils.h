@@ -1,20 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   subtract.c                                         :+:      :+:    :+:   */
+/*   math_utils.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgolding <bgolding@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/22 13:49:41 by bgolding          #+#    #+#             */
-/*   Updated: 2024/08/09 10:31:30 by bgolding         ###   ########.fr       */
+/*   Created: 2024/08/12 13:58:21 by bgolding          #+#    #+#             */
+/*   Updated: 2024/08/12 14:05:21 by bgolding         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "tuples.h"
+#ifndef MATH_UTILS_H
+# define MATH_UTILS_H
 
-t_tuple	tp_subtract(t_tuple a, t_tuple b)
-{
-	if (a.w - b.w < 0)
-		tp_error("tp_subtract", TP_SUB_ERROR);
-	return ((t_tuple){a.x - b.x, a.y - b.y, a.z - b.z, a.w - b.w});
-}
+//	INCLUDES
+
+# include <math.h>
+# include <stdbool.h>
+
+//	DEFINES
+
+# define EPSILON	(0.00001)
+# ifndef M_PI
+#  define M_PI		(3.14159265358979323846f)
+# endif
+
+//	PROTOTYPES
+
+bool	equalf(float a, float b);
+float	fsquaref(float f);
+float	deg_to_rad(float degrees);
+float	rad_to_deg(float radians);
+
+#endif
