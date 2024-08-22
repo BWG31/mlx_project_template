@@ -6,7 +6,7 @@
 #    By: bgolding <bgolding@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/24 11:39:18 by bgolding          #+#    #+#              #
-#    Updated: 2024/01/03 14:16:47 by bgolding         ###   ########.fr        #
+#    Updated: 2024/08/22 20:17:01 by bgolding         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -76,15 +76,22 @@ AR		=	ar -rc
 DEF_COLOR		=	\033[0;39m
 GREEN			=	\033[0;92m
 YELLOW			=	\033[0;93m
+CLEAR_LINE		=	\033[2K
+
+TOTAL_FILES		=	$(words $(SRC_F))
+COMPILED_COUNT	=	0
 
 all:		$(NAME)
 
 $(NAME):	$(OBJ_DIR) $(OBJS)
 			@$(AR) $@ $(OBJS)
-			@echo "$(GREEN)libft ready! $(DEF_COLOR)"
+			@printf "$(CLEAR_LINE)"
+			@echo "\r$(GREEN)$(NAME) ready$(DEF_COLOR)"
 
 $(OBJ_DIR)%.o:		$(SRC_DIR)%.c | $(OBJ_DIR)
+					@$(eval COMPILED_COUNT=$(shell echo $$(($(COMPILED_COUNT) + 1))))
 					@$(CC) $(CFLAGS) -c $< -o $@
+					@printf "\r$(YELLOW)[$(COMPILED_COUNT)/$(TOTAL_FILES)] Compiling libft files$(DEF_COLOR)"
 
 $(OBJ_DIR):
 			@mkdir -p $@

@@ -6,7 +6,7 @@
 #    By: bgolding <bgolding@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/12 11:21:21 by bgolding          #+#    #+#              #
-#    Updated: 2024/08/07 11:11:27 by bgolding         ###   ########.fr        #
+#    Updated: 2024/08/22 20:20:00 by bgolding         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -56,6 +56,8 @@ INC_PATHS		=	$(addprefix -I, $(INC_DIR) \
 SRCS			=	$(addprefix $(SRC_DIR), $(addsuffix .c, $(SRC_FILES)))
 OBJS			=	$(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_FILES)))
 
+LIB_LINK		=	-L$(LIBFT_DIR) -lft -L$(MINILIBX_DIR) -lmlx -L$(LIBRT_DIR) -lrt $(OS_FLAGS)
+
 CC				=	gcc
 CFLAGS			=	-Wall -Wextra -Werror
 RM				=	rm -f
@@ -68,16 +70,16 @@ YELLOW			=	\033[0;93m
 all:			$(STATIC_LIBS) $(NAME)
 
 $(STATIC_LIBS):
-				@echo "$(YELLOW)Creating archives...$(DEF_COLOR)"
+				@echo "$(YELLOW)Compiling static libraries...$(DEF_COLOR)"
 				@make -C $(LIBFT_DIR)
 				@make -C $(MINILIBX_DIR)
 				@make -C $(LIBRT_DIR)
-				@echo "$(GREEN)Minilibx ready! $(DEF_COLOR)"
+				@echo "$(GREEN)All static libraries compiled$(DEF_COLOR)"
 
 $(NAME):		$(OBJ_DIR) $(OBJS) $(STATIC_LIBS)
 				@echo "OS detected: $(UNAME_S)"
-				@$(CC) $(CFLAGS) $(OBJS) -L$(LIBFT_DIR) -lft -L$(MINILIBX_DIR) -lmlx -L$(LIBRT_DIR) -lrt $(OS_FLAGS) -o $@
-				@echo "$(GREEN)Successfully created program: $(NAME) $(DEF_COLOR)"
+				@$(CC) $(CFLAGS) $(OBJS) $(LIB_LINK) -o $@
+				@echo "$(GREEN)Successfully created executable: $(NAME) $(DEF_COLOR)"
 
 $(OBJ_DIR)%.o:	$(SRC_DIR)%.c | $(OBJ_DIR)
 				@$(CC) $(CFLAGS) $(INC_PATHS) -c $< -o $@
