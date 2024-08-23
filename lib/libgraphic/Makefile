@@ -6,7 +6,7 @@
 #    By: bgolding <bgolding@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/06 12:49:52 by bgolding          #+#    #+#              #
-#    Updated: 2024/08/23 15:35:56 by bgolding         ###   ########.fr        #
+#    Updated: 2024/08/23 15:38:09 by bgolding         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -64,11 +64,9 @@ $(OBJ_DIR)%.o:	$(SRC_DIR)%.c
 
 clean:
 			@$(RM) -rf $(OBJ_DIR)
-			@echo "$(RED)##### Removed libgraphic object files #####$(DEFAULT)"
 
 fclean:		clean
 			@$(RM) $(NAME)
-			@echo "$(RED)##### Removed libgraphic archive file #####$(DEFAULT)"
 
 re:			fclean all
 

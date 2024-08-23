@@ -6,7 +6,7 @@
 #    By: bgolding <bgolding@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/12 11:21:21 by bgolding          #+#    #+#              #
-#    Updated: 2024/08/23 15:31:07 by bgolding         ###   ########.fr        #
+#    Updated: 2024/08/23 15:49:17 by bgolding         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -63,27 +63,35 @@ CFLAGS			=	-Wall -Wextra -Werror
 RM				=	rm -f
 AR				=	ar -r
 
-MAKEFLAGS	=	--no-print-directory
+MAKEFLAGS		=	--no-print-directory
 
 DEF_COLOR		=	\033[0;39m
+RED				=	\033[0;91m
 GREEN			=	\033[0;92m
 YELLOW			=	\033[0;93m
+CLEAR_LINE		=	\033[2K
+
+TOTAL_FILES		=	$(words $(SRCS))
+COMPILED_COUNT	=	0
+
 
 all:			$(STATIC_LIBS) $(NAME)
 
 $(STATIC_LIBS):
 				@echo "$(YELLOW)Compiling static libraries...$(DEF_COLOR)"
-				@make -C $(LIBFT_DIR)
-				@make -C $(MINILIBX_DIR)
-				@make -C $(LIBGRAPHIC_DIR)
+				@make libft
+				@make mlx
+				@make libgraphic
 				@echo "$(GREEN)All static libraries compiled$(DEF_COLOR)"
 
 $(NAME):		$(OBJ_DIR) $(OBJS) $(STATIC_LIBS)
-				@echo "OS detected: $(UNAME_S)"
+				@printf "$(CLEAR_LINE)"
 				@$(CC) $(CFLAGS) $(OBJS) $(LIB_LINK) -o $@
-				@echo "$(GREEN)Successfully created executable: $(NAME) $(DEF_COLOR)"
+				@echo "\r$(GREEN)Successfully created executable: $(NAME) $(DEF_COLOR)"
 
 $(OBJ_DIR)%.o:	$(SRC_DIR)%.c | $(OBJ_DIR)
+				@$(eval COMPILED_COUNT=$(shell echo $$(($(COMPILED_COUNT) + 1))))
+				@printf "\r$(YELLOW)[$(COMPILED_COUNT)/$(TOTAL_FILES)] Compiling $(NAME) files$(DEF_COLOR)"
 				@$(CC) $(CFLAGS) $(INC_PATHS) -c $< -o $@
 
 $(OBJ_DIR):
@@ -93,15 +101,24 @@ clean:
 				@$(RM) -rf $(OBJ_DIR)
 				@make clean -C $(LIBFT_DIR)
 				@make clean -C $(LIBGRAPHIC_DIR)
-				@echo "$(GREEN)clean complete $(DEF_COLOR)"
+				@echo "$(YELLOW)clean complete $(DEF_COLOR)"
 
 fclean:			clean
 				@$(RM) $(NAME)
 				@make clean -C $(MINILIBX_DIR)
 				@make fclean -C $(LIBFT_DIR)
 				@make fclean -C $(LIBGRAPHIC_DIR)
-				@echo "$(GREEN)fclean complete $(DEF_COLOR)"
+				@echo "$(YELLOW)fclean complete $(DEF_COLOR)"
 
 re:				fclean all
+
+libft:
+				@make -C $(LIBFT_DIR)
+
+libgraphic:
+				@make -C $(LIBGRAPHIC_DIR)
+
+mlx:
+				@make -C $(MINILIBX_DIR)
 
 .PHONY:			all clean fclean re
