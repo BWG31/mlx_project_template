@@ -30,6 +30,9 @@ all: $(NAME)
 $(NAME): $(OBJ)
 	@$(CC) -o $(NAME) $(OBJ) $(LFLAGS)
 
+%.o:	%.c
+		@$(CC) $(CFLAGS) -c $< -o $@
+
 show:
 	@printf "UNAME		: $(UNAME)\n"
 	@printf "NAME  		: $(NAME)\n"

@@ -6,7 +6,7 @@
 /*   By: bgolding <bgolding@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 11:23:05 by bgolding          #+#    #+#             */
-/*   Updated: 2024/08/12 14:41:29 by bgolding         ###   ########.fr       */
+/*   Updated: 2024/08/23 15:18:12 by bgolding         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include "libft.h"
 # include "mlx.h"
 # include "hex_colors.h"
-# include "librt.h"
+# include "libgraphic.h"
 # include <errno.h>
 # include <stdio.h>
 
@@ -61,19 +61,34 @@ typedef struct s_data
 }			t_data;
 
 //	PROTOTYPES
+
+	//	ERROR HANDLING
+
 void	exit_error(t_data *data, char *message);
+
+	//	INIT/DESTROY
+
 t_data	*init_data(void);
 t_mlx	*init_mlx(void);
 void	reset_image(t_data *data);
 void	destroy_data(t_data *data);
 void	destroy_mlx(t_mlx *mlx);
 int		close_editor(t_data *data);
+
+	//	HOOKS
+
 void	set_hooks(t_data *data);
 int		keypress(int keycode, t_data *data);
 int		mouse_down(int keycode, t_data *data);
 int		mouse_up(int keycode, t_data *data);
 int		mouse_move(int x, int y, t_data *data);
+
+	//	DRAW_UTILS
+
 void	set_pixel_color(t_data *data, int x, int y, int color);
+
+	//	RENDER
+
 void	render(t_data *data);
 
 #endif

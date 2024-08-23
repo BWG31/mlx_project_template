@@ -6,7 +6,7 @@
 #    By: bgolding <bgolding@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/24 11:39:18 by bgolding          #+#    #+#              #
-#    Updated: 2024/08/22 20:17:01 by bgolding         ###   ########.fr        #
+#    Updated: 2024/08/23 15:33:05 by bgolding         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -90,8 +90,8 @@ $(NAME):	$(OBJ_DIR) $(OBJS)
 
 $(OBJ_DIR)%.o:		$(SRC_DIR)%.c | $(OBJ_DIR)
 					@$(eval COMPILED_COUNT=$(shell echo $$(($(COMPILED_COUNT) + 1))))
-					@$(CC) $(CFLAGS) -c $< -o $@
 					@printf "\r$(YELLOW)[$(COMPILED_COUNT)/$(TOTAL_FILES)] Compiling libft files$(DEF_COLOR)"
+					@$(CC) $(CFLAGS) -c $< -o $@
 
 $(OBJ_DIR):
 			@mkdir -p $@

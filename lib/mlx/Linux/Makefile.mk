@@ -54,7 +54,7 @@ $(NAME)	: start_msg $(OBJ)
 	@ar -rc $(NAME) $(OBJ)
 	@ranlib $(NAME)
 	@cp $(NAME) $(NAME_UNAME)
-	@echo "$(GREEN)$(NOM) (Linux) ready$(DEF_COLOR)"
+	@echo "\r$(GREEN)$(NAME) (Linux) ready$(DEF_COLOR)"
 
 check: all
 	@test/run_tests.sh
