@@ -38,13 +38,14 @@ OBJ_DIR = obj
 OBJ	= $(addprefix $(OBJ_DIR)/,$(SRC:%.c=%.o))
 CFLAGS	= -O3 -I$(INC) -w
 
-DEF_COLOR		=	\033[0;39m
-GREEN			=	\033[0;92m
+DEF_COLOR	=	\033[0;39m
+GREEN		=	\033[0;92m
+YELLOW		=	\033[0;93m
 
 all	: $(NAME)
 
 start_msg:
-	@printf "$(YELLOW)Compiling $(NOM)...$(DEF_COLOR)"
+	@printf "$(YELLOW)Compiling $(NAME)...$(DEF_COLOR)"
 
 $(OBJ_DIR)/%.o: %.c
 	@mkdir -p $(OBJ_DIR)

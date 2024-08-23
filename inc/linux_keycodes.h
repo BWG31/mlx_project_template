@@ -6,7 +6,7 @@
 /*   By: bgolding <bgolding@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 11:27:52 by bgolding          #+#    #+#             */
-/*   Updated: 2024/08/06 17:58:42 by bgolding         ###   ########.fr       */
+/*   Updated: 2024/08/23 16:00:15 by bgolding         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,14 +42,14 @@
 # define SPACE_KEY 32
 # define ENTER_KEY 65293
 
-# define DESTROYNOTIFY DestroyNotify
-# define KEYPRESS KeyPress
-# define BUTTONPRESS ButtonPress
-# define BUTTONRELEASE ButtonRelease
-# define MOTIONNOTIFY MotionNotify
-# define KEYPRESSMASK KeyPressMask
-# define BUTTONPRESSMASK ButtonPressMask
-# define BUTTONRELEASEMASK ButtonReleaseMask
-# define POINTERMOTIONMASK PointerMotionMask
+# define DESTROYNOTIFY 17
+# define KEYPRESS 2
+# define BUTTONPRESS 4
+# define BUTTONRELEASE 5
+# define MOTIONNOTIFY 6
+# define KEYPRESSMASK 1
+# define BUTTONPRESSMASK 4
+# define BUTTONRELEASEMASK 8
+# define POINTERMOTIONMASK 64
 
 #endif

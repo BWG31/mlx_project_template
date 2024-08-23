@@ -6,7 +6,7 @@
 /*   By: bgolding <bgolding@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 10:05:50 by bgolding          #+#    #+#             */
-/*   Updated: 2024/08/06 17:57:41 by bgolding         ###   ########.fr       */
+/*   Updated: 2024/08/23 16:00:03 by bgolding         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,15 +40,14 @@
 # define RIGHT_KEY 124
 # define SPACE_KEY 49
 
-// FILLERS (LINUX)
 # define DESTROYNOTIFY 17
 # define KEYPRESS 2
 # define BUTTONPRESS 4
 # define BUTTONRELEASE 5
 # define MOTIONNOTIFY 6
 # define KEYPRESSMASK 1
-# define BUTTONPRESSMASK (1L<<2)
-# define BUTTONRELEASEMASK (1L<<3)
-# define POINTERMOTIONMASK (1L<<6)
+# define BUTTONPRESSMASK 4
+# define BUTTONRELEASEMASK 8
+# define POINTERMOTIONMASK 64
 
 #endif
